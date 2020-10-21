@@ -1,0 +1,34 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.4.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+
+-   repo: https://github.com/psf/black
+    rev: 19.10b0
+    hooks:
+      - id: black
+        name: Formatting python code with black
+        language_version: python3.7
+        args: [--line-length=120]
+
+-   repo: https://github.com/PyCQA/flake8
+    rev: 3.8.2
+    hooks:
+      - id: flake8
+        name: Inspect python code with flake8
+        language_version: python3.8
+        args: [--ignore=E501, --max-complexity=10]
+
+-   repo: local
+    hooks:
+      - id: prepare-commit-msg
+        name: Insert issue number in commit message
+        language: python
+        entry: python prepare_commit_msg.py
+        stages: [prepare-commit-msg]
