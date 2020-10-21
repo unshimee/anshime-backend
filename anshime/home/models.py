@@ -21,3 +21,13 @@ class RouteInfo(models.Model):
     class Meta:
         db_table = "route_info"
         verbose_name = "유저의 귀가 정보"
+
+
+class EmergencyPhoneNumber(models.Model):
+    kakao_user_id = models.ForeignKey(KakaoUser, db_constraint=False, on_delete=models.CASCADE)
+    owner_name = models.CharField(max_length=10, help_text="전화번호 주인 이름")
+    phone_number = models.CharField(max_length=13, help_text="전화번호")
+
+    class Meta:
+        db_table = "emergency_phone_number"
+        verbose_name = "긴급연락처"
