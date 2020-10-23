@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 
 from authentication.forms import KakaoUserForm
+from authentication.helpers import generate_jwt
 from authentication.models import KakaoUser
 
 
@@ -15,7 +16,9 @@ def signin_with_kakao(request):
     form = KakaoUserForm(user_info)
     if not form.is_valid():
         return JsonResponse({
-            'errors': form.errors['__all__']
+            'errors': form.errors['__all__'],
+            'access_token': '',
+            'refresh_token': '',
         }, status=HTTPStatus.BAD_REQUEST)
 
     user, created = KakaoUser.objects.update_or_create(
@@ -25,7 +28,13 @@ def signin_with_kakao(request):
             'username': user_info['username']
         }
     )
+    access_token, refresh_token = generate_jwt(user)
+    succeed_response = {
+        'errors': [],
+        'access_token': access_token,
+        'refresh_token': refresh_token,
+    }
 
     if created:
-        return JsonResponse({'errors': []}, status=HTTPStatus.CREATED)
-    return JsonResponse({'errors': []}, status=HTTPStatus.OK)
+        return JsonResponse(succeed_response, status=HTTPStatus.CREATED)
+    return JsonResponse(succeed_response, status=HTTPStatus.OK)
