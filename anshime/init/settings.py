@@ -120,3 +120,4 @@ STATIC_URL = "/static/"
 REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema"}
 
 RSA_PRIVATE_KEY_FOR_JWT = os.getenv("RSA_PRIVATE_KEY_FOR_JWT")
+RSA_PUBLIC_KEY_FOR_JWT = os.getenv("RSA_PUBLIC_KEY_FOR_JWT")
