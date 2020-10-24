@@ -118,8 +118,6 @@ class TestKakaoSignup(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.BAD_REQUEST)
         self.assertEqual(json.loads(response.content.decode()), {
             'errors': ['카카오 ID가 유효하지 않습니다.'],
-            'access_token': '',
-            'refresh_token': '',
         })
 
         # Then: kakao_user 테이블에 row가 없어야 한다.
@@ -143,8 +141,6 @@ class TestKakaoSignup(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.BAD_REQUEST)
         self.assertEqual(json.loads(response.content.decode()), {
             'errors': ['이메일이 유효하지 않습니다.'],
-            'access_token': '',
-            'refresh_token': '',
         })
 
         # Then: kakao_user 테이블에 row가 없어야 한다.
@@ -168,8 +164,6 @@ class TestKakaoSignup(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.BAD_REQUEST)
         self.assertEqual(json.loads(response.content.decode()), {
             'errors': ['프로필 이름이 유효하지 않습니다.'],
-            'access_token': '',
-            'refresh_token': '',
         })
 
         # Then: kakao_user 테이블에 row가 없어야 한다.
@@ -193,8 +187,6 @@ class TestKakaoSignup(TestCase):
         self.assertEqual(response.status_code, HTTPStatus.BAD_REQUEST)
         self.assertEqual(json.loads(response.content.decode()), {
             'errors': ['성별이 유효하지 않습니다.'],
-            'access_token': '',
-            'refresh_token': '',
         })
 
         # Then: kakao_user 테이블에 row가 없어야 한다.
