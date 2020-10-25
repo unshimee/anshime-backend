@@ -32,7 +32,9 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 DEBUG = True
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    os.getenv('SERVER_PUBLIC_IP'),
+]
 
 
 # Application definition
