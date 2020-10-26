@@ -20,4 +20,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api-doc/", schema_view.with_ui('swagger')),
     path("auth/", include(("authentication.urls", "authentication"), namespace="auth")),
+    path("home/", include(("home.urls", "home"), namespace="home")),
+
 ]
