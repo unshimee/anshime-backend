@@ -11,6 +11,12 @@ def convert_coordinate_to_address(request):
     y = request.GET.get('y')
 
     addresses = request_coord_to_region_code(x, y)
+    result = request_coord_to_region_code(x, y)
+    if not result['success']:
+        return JsonResponse({
+            'error': ['좌표가 유효하지 않습니다. 다시 시도해주세요.'],
+        })
+
     address_to_deliver = addresses['documents'][0]['address_name']
 
     parsed_address = address_to_deliver.split()
@@ -20,6 +26,7 @@ def convert_coordinate_to_address(request):
         depth1, depth2, depth3 = address_to_deliver.split()
 
     return JsonResponse({
+        'error': [],
         '1depth': depth1,
         '2depth': depth2,
         '3depth': depth3,

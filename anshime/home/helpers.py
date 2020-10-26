@@ -1,4 +1,6 @@
 import json
+from http import HTTPStatus
+
 import requests
 
 from init import settings
@@ -10,4 +12,11 @@ def request_coord_to_region_code(x, y):
     response = requests.get(KAKAO_GEO_API_ENDPOINT.format(x=x, y=y), headers={
         'Authorization': 'KakaoAK {}'.format(settings.KAKAO_REST_API_KEY)
     })
-    return json.loads(response.content.decode())
+    if response.status_code == HTTPStatus.BAD_REQUEST:
+        return {
+            'success': False,
+        }
+
+    content = json.loads(response.content.decode())
+    content['success'] = True
+    return content
