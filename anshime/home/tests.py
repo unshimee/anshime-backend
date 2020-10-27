@@ -48,9 +48,9 @@ class TestConvertCoordToAddress(TestCase):
         # Then: 법정동 주소로 시/구/동을 나눠서 보내야 한다.
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertEqual(json.loads(response.content.decode()), {
-            '1depth': '서울특별시',
-            '2depth': '강남구',
-            '3depth': '대치동',
+            'depth1': '서울특별시',
+            'depth2': '강남구',
+            'depth3': '대치동',
         })
 
     @patch('home.helpers.request_coord_to_region_code')
@@ -94,9 +94,9 @@ class TestConvertCoordToAddress(TestCase):
         # Then: 법정동 주소로 군/면/리를 나눠서 보내야 한다.
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertEqual(json.loads(response.content.decode()), {
-            '1depth': '가평군',
-            '2depth': '청평면',
-            '3depth': '대성리',
+            'depth1': '가평군',
+            'depth2': '청평면',
+            'depth3': '대성리',
         })
 
     @patch('home.helpers.request_coord_to_region_code')
@@ -140,7 +140,7 @@ class TestConvertCoordToAddress(TestCase):
         # Then: 법정동 주소로 시/구/동을 나눠서 보내야 한다.
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.assertEqual(json.loads(response.content.decode()), {
-            '1depth': '성남시',
-            '2depth': '분당구',
-            '3depth': '금곡동',
+            'depth1': '성남시',
+            'depth2': '분당구',
+            'depth3': '금곡동',
         })

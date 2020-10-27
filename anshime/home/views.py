@@ -56,7 +56,7 @@ def convert_coordinate_to_address(request):
 
     return JsonResponse({
         'error': [],
-        '1depth': depth1,
-        '2depth': depth2,
-        '3depth': depth3,
+        'depth1': depth1,
+        'depth2': depth2,
+        'depth3': depth3,
     })
